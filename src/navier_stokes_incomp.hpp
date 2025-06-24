@@ -1,40 +1,35 @@
 #pragma once
 
-#include "fem.hpp"
+#include "element.hpp"
+#include "mesh.hpp"
+#include "solver.hpp"
+#include "time.hpp"
+#include "vtk.hpp"
 
 /**
- * @class NavierStokesIncomp
- * @brief Implements incompressible Navier-Stokes equations for fluid flow
- *
- * Provides functionality for:
- * - Setting fluid properties (density, viscosity)
- * - Assembling local matrices for FEM formulation
- * - Handling both linear and nonlinear flow cases
+ * @class Navier-Stokes Incompressible Flow
  */
-class NavierStokesIncomp : public virtual Fem
+class NavierStokesIncomp : public Mesh, public Time, public Element, public Solver, public Vtk
 {
    public:
-    ~NavierStokesIncomp() override { linear = false; }
+    NavierStokesIncomp() : Mesh(), Time(), Element(), Solver(), Vtk() {
+        // Initialize physics properties
+        rho = 1.0;
+        mu = 0.01;
+        linear = false;
+    }
 
-    /**
-     * @brief Sets a fluid property
-     * @param name Property name ("rho" for density, "mu" for viscosity)
-     * @param val Property value
-     */
-    virtual void setProp(const char *name, double val);
+    virtual ~NavierStokesIncomp() = default;
 
-    /**
-     * @brief Assembles local matrix for an element
-     * @param e Element index
-     */
-    virtual void assembleLocalMatrix(int e) override;
+    // Physics methods
+    void setProp(const char* name, double val);
+    void assembleLocalMatrix(int e) override;
 
-    /// Fluid density
+    // Physics properties
     double rho;
-    /// Dynamic viscosity
     double mu;
-    /// Flag for linear/nonlinear formulation
     bool linear;
+
 };
 
 inline void NavierStokesIncomp::setProp(const char *name, double val)

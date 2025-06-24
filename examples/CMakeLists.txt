@@ -7,5 +7,5 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 set(CMAKE_CXX_EXTENSIONS OFF)
 
 # Link against main library and VTK
-# add_subdirectory(poisson)
+add_subdirectory(poisson)
 add_subdirectory(cylinder)

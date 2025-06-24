@@ -1,20 +1,36 @@
 #pragma once
 
-#include "fem.hpp"
+#include "element.hpp"
+#include "mesh.hpp"
+#include "solver.hpp"
+#include "time.hpp"
+#include "vtk.hpp"
 
-class Poisson : public virtual Fem
+/**
+ * @class Poisson problem
+ */
+class Poisson : public Mesh, public Time, public Element, public Solver, public Vtk
 {
    public:
-    virtual ~Poisson() {}
+    Poisson() : Mesh(), Time(), Element(), Solver(), Vtk() {
+        // Initialize physics properties
+        f = 1.0;
+        mu = 1.0;
+    }
 
-    virtual void setProp(char *, double);
+    virtual ~Poisson() = default;
 
-    virtual void assembleLocalMatrix(int);
+    // Physics methods
+    void setProp(const char* name, double val);
+    void assembleLocalMatrix(int e) override;
 
-    double f, mu;
+    // Physics properties
+    double f;
+    double mu;
+
 };
 
-inline void Poisson::setProp(char *name, double val)
+inline void Poisson::setProp(const char *name, double val)
 {
     if (strcmp(name, "f") == 0)
     {
@@ -45,6 +61,7 @@ inline void Poisson::assembleLocalMatrix(int e)
 
     int i, j, g, ii;
     double coef;
+
     std::vector<double> gphi(ndm), xgphi(ndm);
 
     // gauss point loop

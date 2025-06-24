@@ -1,6 +1,6 @@
 #define POSTPROCESS
 
-#include "cflow.hpp"
+#include "navier_stokes_incomp.hpp"
 
 //==============================================================================
 int main(int argc, char *argv[])
@@ -10,7 +10,7 @@ int main(int argc, char *argv[])
 
     // ############################################
     //  preprocessing stage
-    Cflow fem;
+    NavierStokesIncomp fem;
 
     fem.setDimension(2);
     fem.setDof(3);
