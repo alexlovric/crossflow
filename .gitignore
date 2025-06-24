@@ -1,0 +1,97 @@
+# IDE and editor files
+.vscode/
+.idea/
+*.swp
+*.swo
+*.swn
+*.bak
+*.tmp
+
+# Build artifacts
+examples/*/out/*
+examples/*/obj/*
+*.o
+*.obj
+*.exe
+*.so
+*.dll
+*.lib
+*.a
+*.pdb
+build/
+
+# Debug artifacts
+*.dSYM/
+
+# Documentation
+**/*.pdf
+**/*.doc
+**/*.docx
+**/*.ppt
+**/*.pptx
+
+# Simulation and visualization files
+**/*.vtu
+**/*.msh
+
+# External libraries
+ext/*
+
+# Shell scripts
+*.sh
+
+# Project-specific directories
+examples/*/build/
+examples/*/dist/
+examples/*/temp/
+
+# Log files
+*.log
+
+# Coverage reports
+coverage/
+coverage.xml
+
+# Test results
+test-results/
+
+# Python virtual environment
+venv/
+env/
+*.pyc
+__pycache__/
+
+# CMake
+CMakeFiles/
+CMakeCache.txt
+cmake_install.cmake
+Makefile
+
+# Build tools
+.DS_Store
+.ninja_log
+.ninja_deps
+
+# Local configuration files
+*.local
+*.user
+*.suo
+
+# Backup files
+*.orig
+*.rej
+
+# Git submodules
+.gitmodules
+.git/config
+.git/hooks/
+
+# Cache
+.cache
+
+# Clang
+.clangd
+.clang-format
+
+# Backups
+**/*.back
