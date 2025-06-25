@@ -1,8 +1,9 @@
 #pragma once
 
-#include "fem.hpp"
-#include <stdexcept>
 #include <sstream>
+#include <stdexcept>
+
+#include "fem.hpp"
 
 /**
  * @class Time

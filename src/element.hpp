@@ -1,8 +1,9 @@
 #pragma once
 
-#include "fem.hpp"
 #include <sstream>
 #include <stdexcept>
+
+#include "fem.hpp"
 
 /**
  * @class Element
@@ -163,7 +164,7 @@ inline void Element::gauss(int ngpx)
 
             default:
                 throw std::runtime_error(
-                    "Element::gauss: Unsupported number of element nodes (nen = " + 
+                    "Element::gauss: Unsupported number of element nodes (nen = " +
                     std::to_string(nen) + "). Only 3 (triangle) and 4 (quad) are supported.");
         }
 
@@ -241,9 +242,9 @@ inline void Element::gaussQuad2D(int ngpx)
             break;
 
         default:
-            throw std::runtime_error(
-                "Element::gaussQuad2D: Unsupported number of Gauss points (" + 
-                std::to_string(ngpx) + "). Only 1, 4, and 9 points are supported.");
+            throw std::runtime_error("Element::gaussQuad2D: Unsupported number of Gauss points (" +
+                                     std::to_string(ngpx) +
+                                     "). Only 1, 4, and 9 points are supported.");
     }
 }
 
@@ -300,9 +301,9 @@ inline void Element::gaussTri2D(int ngpx)
             break;
 
         default:
-            throw std::runtime_error(
-                "Element::gaussTri2D: Unsupported number of Gauss points (" + 
-                std::to_string(ngpx) + "). Only 1, 3, 4, 6, 7, and 12 points are supported.");
+            throw std::runtime_error("Element::gaussTri2D: Unsupported number of Gauss points (" +
+                                     std::to_string(ngpx) +
+                                     "). Only 1, 3, 4, 6, 7, and 12 points are supported.");
     }
 }
 
@@ -324,7 +325,7 @@ inline void Element::shape(int g)
 
             default:
                 throw std::runtime_error(
-                    "Element::shape: Unsupported number of element nodes (nen = " + 
+                    "Element::shape: Unsupported number of element nodes (nen = " +
                     std::to_string(nen) + "). Only 3 (triangle) and 4 (quad) are supported.");
         }
 
@@ -422,7 +423,7 @@ inline double Element::getElemSize(int e)
 
             default:
                 throw std::runtime_error(
-                    "Element::getElemSize: Unsupported number of element nodes (nen = " + 
+                    "Element::getElemSize: Unsupported number of element nodes (nen = " +
                     std::to_string(nen) + "). Only 3 (triangle) and 4 (quad) are supported.");
         }
 
@@ -445,9 +446,8 @@ inline double Element::getElemSizeQuad2D(int e)
 
     if (area < 0)
     {
-        throw std::runtime_error(
-            "Element::getElemSize: Negative area detected. Check element " + 
-            std::to_string(e) + " for invalid node ordering.");
+        throw std::runtime_error("Element::getElemSize: Negative area detected. Check element " +
+                                 std::to_string(e) + " for invalid node ordering.");
     }
 
     return sqrt(area);
@@ -461,9 +461,8 @@ inline double Element::getElemSizeTri2D(int e)
 
     if (area < 0)
     {
-        throw std::runtime_error(
-            "Element::getElemSize: Negative area detected. Check element " + 
-            std::to_string(e) + " for invalid node ordering.");
+        throw std::runtime_error("Element::getElemSize: Negative area detected. Check element " +
+                                 std::to_string(e) + " for invalid node ordering.");
     }
 
     return sqrt(area);

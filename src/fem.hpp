@@ -124,7 +124,8 @@ class Fem
      */
     virtual void adaptiveTimeStepping(int nrIter, int nrOpt)
     {
-        throw std::runtime_error("Fem::adaptiveTimeStepping: Pure virtual function not implemented");
+        throw std::runtime_error(
+            "Fem::adaptiveTimeStepping: Pure virtual function not implemented");
     }
 
     /**

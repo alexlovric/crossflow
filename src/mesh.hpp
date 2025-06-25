@@ -2,8 +2,8 @@
 
 #include <algorithm>
 #include <fstream>
-#include <sstream>
 #include <iostream>
+#include <sstream>
 #include <stdexcept>
 
 #include "constants.hpp"
@@ -97,14 +97,6 @@ class Mesh : public virtual Fem
 #endif
 };
 
-/**
- * @brief Reads mesh data from a file
- *
- * Reads a mesh file and populates the mesh data structures.
- *
- * @param mesh_name Path to the mesh file
- * @param first Index offset for node numbering (0 or 1 based)
- */
 inline void Mesh::readMesh(const char *mesh_name, int first)
 {
     printf("Mesh::readMesh -> Reading mesh\n");
@@ -190,7 +182,7 @@ inline void Mesh::readMesh(const char *mesh_name, int first)
 }
 
 inline void Mesh::createBlockMesh2D(double xmin, double xmax, double ymin, double ymax, int nex,
-                                     int ney)
+                                    int ney)
 {
     printf("Mesh::createBlockMesh2D : Creating 2D block mesh\n");
 
@@ -284,7 +276,8 @@ inline void Mesh::getEdges(vector<int> &edge, int e)
 
         default:
         {
-            throw std::runtime_error("Mesh::getEdges: not yet implemented for the given element configuration.");
+            throw std::runtime_error(
+                "Mesh::getEdges: not yet implemented for the given element configuration.");
         }
     }
 }
