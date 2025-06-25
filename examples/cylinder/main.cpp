@@ -1,6 +1,6 @@
 #define POSTPROCESS
 
-#include "navier_stokes_incomp.hpp"
+#include "physics/navier_stokes_incomp.hpp"
 
 //==============================================================================
 int main(int argc, char *argv[])
@@ -12,7 +12,7 @@ int main(int argc, char *argv[])
     //  preprocessing stage
     NavierStokesIncomp fem;
 
-    fem.setDimension(2);
+    fem.setDim(2);
     fem.setDof(3);
 
     fem.readMesh("cylinder.msh", 1);
@@ -70,7 +70,6 @@ int main(int argc, char *argv[])
 
     // ############################################
     //  processing stage
-
     fem.prepareSolver();
 
     char fname[100];

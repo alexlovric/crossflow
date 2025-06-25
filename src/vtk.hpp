@@ -106,8 +106,6 @@ inline Vtk::Vtk(void) : Fem()
 
 inline void Vtk::addVtkMesh(void)
 {
-    printf("Vtk::addVtkMesh : Creating mesh vtk file\n");
-
     vtkSmartPointer<vtkQuad> quadVTK = vtkSmartPointer<vtkQuad>::New();
 
     vtkSmartPointer<vtkTriangle> triaVTK = vtkSmartPointer<vtkTriangle>::New();
@@ -152,18 +150,16 @@ inline void Vtk::addVtkMesh(void)
         }
         else
         {
-            printf(
-                "ERROR : Vtk::addVtkMesh\n"
-                "\t-> Only linear triangles/quads implemented.\n\n");
-            exit(1);
+            throw std::runtime_error(
+                "Vtk::addVtkMesh: Only linear triangles and quads are currently supported. "
+                "Unsupported element type encountered.");
         }
     }
     else
     {
-        printf(
-            "ERROR : Vtk::addVtkMesh\n"
-            "\t-> 1D/3D not implemented yet.\n\n");
-        exit(1);
+        throw std::runtime_error(
+            "Vtk::addVtkMesh: 1D and 3D meshes are not yet implemented. "
+            "Only 2D meshes are currently supported.");
     }
 
     uGridVtk->SetPoints(pointsVtk);
@@ -171,8 +167,6 @@ inline void Vtk::addVtkMesh(void)
 
 inline void Vtk::writeVtkPoints(vector<int> &points, const char *filename)
 {
-    printf("Vtk::writeVtkPoints : Creating points vtk file\n");
-
     vtkSmartPointer<vtkVertex> vertexVTK = vtkSmartPointer<vtkVertex>::New();
 
     vtkIdType pt[8];
@@ -208,8 +202,6 @@ inline void Vtk::writeVtk(const char *filename)
     writerVtk->SetInputData(uGridVtk);
     writerVtk->SetDataModeToBinary();
     writerVtk->Write();
-
-    printf("\nWritten output file: %s\n", filename);
 };
 
 inline void Vtk::addVtkSol(int df, int type, const char *name)
@@ -254,10 +246,9 @@ inline void Vtk::addVtkSol(int df, int type, const char *name)
 
         default:
         {
-            printf(
-                "ERROR : Vtk::addVtkSol\n"
-                "\t-> Second entry must be 0 - scalar or 1 - vector.\n\n");
-            exit(1);
+            throw std::runtime_error(
+                "Vtk::addVtkSol: Invalid solution type. "
+                "Second entry must be 0 (scalar) or 1 (vector).");
         }
     }
 

@@ -3,6 +3,8 @@
 #include <algorithm>
 #include <fstream>
 #include <sstream>
+#include <iostream>
+#include <stdexcept>
 
 #include "constants.hpp"
 #include "fem.hpp"
@@ -181,10 +183,9 @@ inline void Mesh::readMesh(const char *mesh_name, int first)
 
     else
     {
-        printf(
-            "ERROR: \t-> Mesh::readMesh\n"
-            "\t-> Check if the file is in current directory.\n\n");
-        exit(1);
+        std::ostringstream oss;
+        oss << "Mesh::readMesh: cannot open mesh file '" << mesh_name << "'";
+        throw std::runtime_error(oss.str());
     }
 }
 
@@ -283,10 +284,7 @@ inline void Mesh::getEdges(vector<int> &edge, int e)
 
         default:
         {
-            printf(
-                "ERROR : Mesh::getEdges\n"
-                "\t-> Not yet implemented for other nen.\n\n");
-            exit(1);
+            throw std::runtime_error("Mesh::getEdges: not yet implemented for the given element configuration.");
         }
     }
 }
@@ -559,18 +557,16 @@ inline void Mesh::readGmsh(const char *mesh_name)
 
         else
         {
-            printf(
-                "ERROR : Mesh::readGmsh\n"
-                "\t-> Check if the file is in current directory.\n\n");
-            exit(1);
+            {
+                std::ostringstream oss;
+                oss << "Mesh::readGmsh: cannot open mesh file '" << mesh_name << "'";
+                throw std::runtime_error(oss.str());
+            }
         }
     }
     else
     {
-        printf(
-            "ERROR : Mesh::readGmsh\n"
-            "\t-> 3D not yet implemented.\n\n");
-        exit(1);
+        throw std::runtime_error("Mesh::readGmsh: 3D meshes not yet implemented.");
     }
 }
 

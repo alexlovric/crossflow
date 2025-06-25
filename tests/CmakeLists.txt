@@ -1,0 +1,20 @@
+cmake_minimum_required(VERSION 3.10)
+project(CrossflowTests)
+
+# Add Google Test submodule
+add_subdirectory(googletest)
+
+# Create test executable
+add_executable(crossflow_tests
+    test_mesh.cpp
+)
+
+# Link test executable with gtest and main library
+target_link_libraries(crossflow_tests
+    GTest::gtest_main
+    crossflow_lib  # Your main library target
+)
+
+# Discover and add tests
+include(GoogleTest)
+gtest_discover_tests(crossflow_tests)

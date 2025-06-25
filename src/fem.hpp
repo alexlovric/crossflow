@@ -32,7 +32,7 @@ class Fem
      * @brief Sets the spatial dimension (2D/3D)
      * @param ndm Number of dimensions (2 or 3)
      */
-    virtual void setDimension(int ndm) { this->ndm = ndm; }
+    virtual void setDim(int ndm) { this->ndm = ndm; }
 
     /**
      * @brief Sets degrees of freedom per node
@@ -78,8 +78,7 @@ class Fem
      */
     virtual void gauss(int e)
     {
-        cout << "ERROR: Fem::gauss : not defined.";
-        exit(1);
+        throw std::runtime_error("Fem::gauss: Pure virtual function not implemented");
     }
 
     /**
@@ -88,8 +87,7 @@ class Fem
      */
     virtual void shape(int e)
     {
-        cout << "ERROR: Fem::shape : not defined.";
-        exit(1);
+        throw std::runtime_error("Fem::shape: Pure virtual function not implemented");
     }
 
     /**
@@ -99,8 +97,7 @@ class Fem
      */
     virtual double getElemSize(int e)
     {
-        cout << "ERROR: Fem::getElemSize : not defined.";
-        exit(1);
+        throw std::runtime_error("Fem::getElemSize: Pure virtual function not implemented");
     }
 
     /**
@@ -109,8 +106,7 @@ class Fem
      */
     virtual void assembleLocalMatrix(int e)
     {
-        cout << "ERROR: Fem::assembleLocalMatrix : not defined.";
-        exit(1);
+        throw std::runtime_error("Fem::assembleLocalMatrix: Pure virtual function not implemented");
     }
 
     /**
@@ -118,8 +114,7 @@ class Fem
      */
     virtual void updateVars(void)
     {
-        cout << "ERROR: Fem::updateVars : not defined.";
-        exit(1);
+        throw std::runtime_error("Fem::updateVars: Pure virtual function not implemented");
     }
 
     /**
@@ -129,8 +124,7 @@ class Fem
      */
     virtual void adaptiveTimeStepping(int nrIter, int nrOpt)
     {
-        cout << "ERROR: Fem::adaptiveTimeStepping : not defined.";
-        exit(1);
+        throw std::runtime_error("Fem::adaptiveTimeStepping: Pure virtual function not implemented");
     }
 
     /**

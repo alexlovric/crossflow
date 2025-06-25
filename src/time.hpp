@@ -1,6 +1,8 @@
 #pragma once
 
 #include "fem.hpp"
+#include <stdexcept>
+#include <sstream>
 
 /**
  * @class Time
@@ -125,13 +127,11 @@ inline void Time::setTime(const char *name, double val)
         theta = val;
         return;
     }
-    // else if (strcmp(name,"scheme") == 0) { scheme = (const char *)val; return;}
     else
     {
-        printf(
-            "ERROR : Time::setTime\n"
-            "\t-> Property does not exist.\n\n");
-        exit(1);
+        std::ostringstream oss;
+        oss << "Time::setTime: Unknown parameter '" << name << '\'';
+        throw std::runtime_error(oss.str());
     }
 }
 

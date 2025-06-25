@@ -1,6 +1,8 @@
 #pragma once
 
 #include "fem.hpp"
+#include <sstream>
+#include <stdexcept>
 
 /**
  * @class Element
@@ -132,8 +134,9 @@ inline void Element::gauss1D(void)
             w[3] = 0.347854845137454;
             break;
         default:
-            printf("ERROR: Invalid number of Gauss points: %d\n", ngp);
-            exit(1);
+            std::ostringstream oss;
+            oss << "Element: Invalid number of Gauss points: " << ngp;
+            throw std::runtime_error(oss.str());
     }
 }
 
@@ -159,18 +162,14 @@ inline void Element::gauss(int ngpx)
                 break;
 
             default:
-                printf(
-                    "ERROR : Element::gauss\n"
-                    "\t-> The number of element nodes is not available.\n\n");
-                exit(1);
+                throw std::runtime_error(
+                    "Element::gauss: Unsupported number of element nodes (nen = " + 
+                    std::to_string(nen) + "). Only 3 (triangle) and 4 (quad) are supported.");
         }
 
     else
     {
-        printf(
-            "ERROR : Element::gauss\n"
-            "\t-> 3D not yet implemented.\n\n");
-        exit(1);
+        throw std::runtime_error("Element::gauss: 3D elements not yet implemented.");
     }
 }
 
@@ -242,10 +241,9 @@ inline void Element::gaussQuad2D(int ngpx)
             break;
 
         default:
-            printf(
-                "ERROR : Element::gaussQuad2D\n"
-                "\t-> The number of Gauss points is unavailable.\n\n");
-            exit(1);
+            throw std::runtime_error(
+                "Element::gaussQuad2D: Unsupported number of Gauss points (" + 
+                std::to_string(ngpx) + "). Only 1, 4, and 9 points are supported.");
     }
 }
 
@@ -302,10 +300,9 @@ inline void Element::gaussTri2D(int ngpx)
             break;
 
         default:
-            printf(
-                "ERROR : Element::gaussTri2D\n"
-                "\t-> The number of Gauss points is unavailable.\n\n");
-            exit(1);
+            throw std::runtime_error(
+                "Element::gaussTri2D: Unsupported number of Gauss points (" + 
+                std::to_string(ngpx) + "). Only 1, 3, 4, 6, 7, and 12 points are supported.");
     }
 }
 
@@ -326,18 +323,14 @@ inline void Element::shape(int g)
                 break;
 
             default:
-                printf(
-                    "ERROR : Element::shape\n"
-                    "\t-> The number of element nodes is not available.\n\n");
-                exit(1);
+                throw std::runtime_error(
+                    "Element::shape: Unsupported number of element nodes (nen = " + 
+                    std::to_string(nen) + "). Only 3 (triangle) and 4 (quad) are supported.");
         }
 
     else
     {
-        printf(
-            "ERROR : Element::shape\n"
-            "\t-> 3D not yet implemented.\n\n");
-        exit(1);
+        throw std::runtime_error("Element::shape: 3D elements not yet implemented.");
     }
 }
 
@@ -428,18 +421,14 @@ inline double Element::getElemSize(int e)
                 return getElemSizeQuad2D(e);
 
             default:
-                printf(
-                    "ERROR : Element::getElemSize\n"
-                    "\t-> The number of element nodes is not available.\n\n");
-                exit(1);
+                throw std::runtime_error(
+                    "Element::getElemSize: Unsupported number of element nodes (nen = " + 
+                    std::to_string(nen) + "). Only 3 (triangle) and 4 (quad) are supported.");
         }
 
     else
     {
-        printf(
-            "ERROR : Element::getElemSize\n"
-            "\t-> 3D not yet implemented.\n\n");
-        exit(1);
+        throw std::runtime_error("Element::getElemSize: 3D elements not yet implemented.");
     }
 }
 
@@ -456,10 +445,9 @@ inline double Element::getElemSizeQuad2D(int e)
 
     if (area < 0)
     {
-        printf(
-            "ERROR : Element::getElemSize\n"
-            "\t-> Negative area.\n\n");
-        exit(1);
+        throw std::runtime_error(
+            "Element::getElemSize: Negative area detected. Check element " + 
+            std::to_string(e) + " for invalid node ordering.");
     }
 
     return sqrt(area);
@@ -473,10 +461,9 @@ inline double Element::getElemSizeTri2D(int e)
 
     if (area < 0)
     {
-        printf(
-            "ERROR : Element::getElemSize\n"
-            "\t-> Negative area.\n\n");
-        exit(1);
+        throw std::runtime_error(
+            "Element::getElemSize: Negative area detected. Check element " + 
+            std::to_string(e) + " for invalid node ordering.");
     }
 
     return sqrt(area);
