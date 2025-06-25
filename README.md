@@ -3,9 +3,9 @@
 
 Crossflow is a finite element method (FEM) framework designed for solving multiphysics problems. It provides a flexible and easily extendible platform for simulating fluid dynamics, structural mechanics, and coupled physics phenomena. Easily switch out the solver for something beefier if you want.
 
-## Vortex Shedding Simulation
+![Vortex Shedding](docs/vortex_shedding.gif)
 
-![Vortex Shedding](docs/vortex_shedding.mp4)
+<sup>Simulation of vortex shedding around a cylinder (from cylinder example).</sup>
 
 ## Dependencies
 

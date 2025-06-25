@@ -32,7 +32,6 @@ build/
 
 # Simulation and visualization files
 **/*.vtu
-**/*.msh
 
 # External libraries
 ext/*
