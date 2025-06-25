@@ -1,5 +1,5 @@
 # Crossflow - Multiphysics FEM Framework
-[![Build Status](https://github.com/alov/crossflow/actions/workflows/build-and-test.yml/badge.svg)](https://github.com/alov/crossflow/actions)
+[![Build Status](https://github.com/alexlovric/crossflow/actions/workflows/build-and-test.yml/badge.svg)](https://github.com/alexlovric/crossflow/actions)
 
 Crossflow is a finite element method (FEM) framework designed for solving multiphysics problems. It provides a flexible and easily extendible platform for simulating fluid dynamics, structural mechanics, and coupled physics phenomena. Easily switch out the solver for something beefier if you want.
 
